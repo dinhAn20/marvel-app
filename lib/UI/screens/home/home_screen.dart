@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:marvel_app/UI/components/character_list_view.dart';
+import 'package:marvel_app/UI/components/thumbnail_list_view.dart';
 import 'package:marvel_app/UI/components/section_header_widget.dart';
+import 'package:marvel_app/_internal/enum/enum.dart';
 import 'package:marvel_app/controllers/home/home_controller.dart';
 import 'package:marvel_app/core/styles.dart';
 
@@ -56,8 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         leading: IconButton(
           icon: SvgPicture.asset('assets/icons/Menu.svg'),
-          onPressed: () {
-          },
+          onPressed: () {},
         ),
         actions: [
           IconButton(
@@ -82,32 +82,18 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.symmetric(vertical: 24.0),
               child: SectionHeaderWidget(title: "Characters"),
             ),
-            CharacterListView(characters: homeController.characters),
+            ThumnailListView(
+              homeController: homeController,
+              type: APIMethod.characters,
+            ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 24.0),
               child: SectionHeaderWidget(title: "Comics"),
             ),
-            CharacterListView(characters: homeController.characters),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.0),
-              child: SectionHeaderWidget(title: "Creators"),
+            ThumnailListView(
+              homeController: homeController,
+              type: APIMethod.comics,
             ),
-            CharacterListView(characters: homeController.characters),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.0),
-              child: SectionHeaderWidget(title: "Events"),
-            ),
-            CharacterListView(characters: homeController.characters),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.0),
-              child: SectionHeaderWidget(title: "Series"),
-            ),
-            CharacterListView(characters: homeController.characters),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.0),
-              child: SectionHeaderWidget(title: "Stories"),
-            ),
-            CharacterListView(characters: homeController.characters),
           ],
         ),
       ),

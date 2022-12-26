@@ -21,11 +21,13 @@ String gerarUrl(String assunto, {String adicional = ""}) {
   print(urlFinal);
   return urlFinal;
 }
- Future<http.Response> makeQuery(String urlFinal) async {
-    final uri = Uri.parse(urlFinal);
-    var result = await http.get(uri);
-    return result;
-  }
+
+Future<http.Response> makeQuery(String urlFinal) async {
+  final uri = Uri.parse(urlFinal);
+  var result = await http.get(uri);
+  return result;
+}
+
 gerarHash() {
   hash = generateMd5(
       timeStamp.toIso8601String() + Helper.privateApiKey + Helper.publicApiKey);
