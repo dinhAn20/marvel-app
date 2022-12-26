@@ -12,9 +12,10 @@ Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
       description: json['description'] as String?,
       modified: json['modified'] as String?,
       resourceURI: json['resourceURI'] as String?,
-    )..thumbnail = json['thumbnail'] == null
-        ? null
-        : Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>);
+      thumbnail: json['thumbnail'] == null
+          ? null
+          : Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
       'id': instance.id,

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:marvel_app/UI/components/character_card.dart';
+import 'package:marvel_app/UI/components/character_list_view.dart';
 import 'package:marvel_app/UI/components/section_header_widget.dart';
-import 'package:marvel_app/controllers/home_controller.dart';
+import 'package:marvel_app/controllers/home/home_controller.dart';
 import 'package:marvel_app/core/styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    homeController.getListCharacters();
   }
 
   @override
@@ -58,7 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: IconButton(
           icon: SvgPicture.asset('assets/icons/Menu.svg'),
           onPressed: () {
-            homeController.getListCharacters();
           },
         ),
         actions: [
@@ -69,52 +67,50 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       backgroundColor: Colors.white,
-      body: Obx(() {
-        return SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: SizedBox(
-            height: 1.sh,
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text('Bem vindo ao Marvel Heroes',
-                          style: textStyleSemiBold),
-                      Text('Escolha o seu personagem', style: textStyleHeavy32),
-                    ]),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 24.0),
-                  child: SectionHeaderWidget(title: "Heroes"),
-                ),
-                Column(
-                  children: [
-                    AnimatedContainer(
-                      height: 230,
-                      duration: const Duration(milliseconds: 400),
-                      width: double.infinity,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: homeController.characters.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right  : 6),
-                            child: CharacterCard(
-                              character: homeController.characters[index],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                )
-              ],
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text('Welcome to Marvel App', style: textStyleSemiBold),
+                  Text('Choose your character', style: textStyleHeavy32),
+                ]),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 24.0),
+              child: SectionHeaderWidget(title: "Characters"),
             ),
-          ),
-        );
-      }),
+            CharacterListView(characters: homeController.characters),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 24.0),
+              child: SectionHeaderWidget(title: "Comics"),
+            ),
+            CharacterListView(characters: homeController.characters),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 24.0),
+              child: SectionHeaderWidget(title: "Creators"),
+            ),
+            CharacterListView(characters: homeController.characters),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 24.0),
+              child: SectionHeaderWidget(title: "Events"),
+            ),
+            CharacterListView(characters: homeController.characters),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 24.0),
+              child: SectionHeaderWidget(title: "Series"),
+            ),
+            CharacterListView(characters: homeController.characters),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 24.0),
+              child: SectionHeaderWidget(title: "Stories"),
+            ),
+            CharacterListView(characters: homeController.characters),
+          ],
+        ),
+      ),
     );
   }
 }

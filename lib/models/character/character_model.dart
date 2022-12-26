@@ -6,14 +6,16 @@ class Character {
   final int id;
   final String name;
   final String? description, modified, resourceURI;
-  Thumbnail? thumbnail;
+  final Thumbnail? thumbnail;
 
-  Character(
-      {required this.id,
-      required this.name,
-      this.description,
-      this.modified,
-      this.resourceURI});
+  Character({
+    required this.id,
+    required this.name,
+    this.description,
+    this.modified,
+    this.resourceURI,
+    this.thumbnail,
+  });
   factory Character.fromJson(Map<String, dynamic> json) =>
       _$CharacterFromJson(json);
 

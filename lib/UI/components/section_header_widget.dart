@@ -14,7 +14,7 @@ class SectionHeaderWidget extends StatelessWidget {
         Text(title, style: textStyleBold),
         GestureDetector(
           onTap: onPressed,
-          child: const Text('Ver tudo', style: textStyleMedium14),
+          child: const Text('See all', style: textStyleMedium14),
         ),
       ],
     );

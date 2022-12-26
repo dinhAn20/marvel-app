@@ -1,5 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:marvel_app/models/character_model.dart';
+import 'package:marvel_app/models/character/character_model.dart';
 
 class CharacterCard extends StatelessWidget {
   const CharacterCard(
@@ -16,7 +17,7 @@ class CharacterCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
-            image: NetworkImage(
+            image: CachedNetworkImageProvider(
                 "${character.thumbnail?.path}.${character.thumbnail?.extension}"),
             fit: BoxFit.cover,
           ),
@@ -30,8 +31,8 @@ class CharacterCard extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Colors.black.withOpacity(.1),
-                Colors.black.withOpacity(.25)
+                Colors.black.withOpacity(.075),
+                Colors.black.withOpacity(.015)
               ],
             ),
           ),

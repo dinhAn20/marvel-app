@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
+import 'package:http/http.dart' as http;
 
 class Helper {
   static String publicApiKey = "24dceef7f091d186922b7d1493305159";
@@ -20,11 +21,14 @@ String gerarUrl(String assunto, {String adicional = ""}) {
   print(urlFinal);
   return urlFinal;
 }
-
+ Future<http.Response> makeQuery(String urlFinal) async {
+    final uri = Uri.parse(urlFinal);
+    var result = await http.get(uri);
+    return result;
+  }
 gerarHash() {
   hash = generateMd5(
       timeStamp.toIso8601String() + Helper.privateApiKey + Helper.publicApiKey);
-  print(hash);
 }
 
 String generateMd5(String input) {

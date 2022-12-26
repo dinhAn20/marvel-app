@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:marvel_app/controllers/home_controller.dart';
+import 'package:marvel_app/controllers/home/home_controller.dart';
 
 class Binding implements Bindings {
   @override
